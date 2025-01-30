@@ -1,9 +1,11 @@
 {
 	"tasks": {
-		"initialize": "deno run -R -W --allow-run=npm ./scripts/initialize.js",
 		"knip": "npx knip",
 		"lint": "npx eslint@9.14.0",
-		"start": "deno run --env main.js"
+		"create-base": "deno run -A ./scripts/create-base.js",
+		"generate-variants": "deno run -A ./scripts/generate-variants.js",
+		"convert-to-png": "deno run -A ./scripts/convert-to-png.js",
+		"process": "sh -c 'deno task generate-variants \"$@\" && deno task convert-to-png \"$@\"' sh"
 	},
 	"fmt": {
 		"options": {
@@ -49,6 +51,9 @@
 		"kv"
 	],
 	"imports": {
+		"@astral/astral": "jsr:@astral/astral@^0.5.2",
+		"@pumpn/svg-to-png": "jsr:@pumpn/svg-to-png@^0.2.2",
+		"@radashi-org/radashi": "jsr:@radashi-org/radashi@^12.3.4",
 		"@std/path": "jsr:@std/path@^1.0.8"
 	}
 }
